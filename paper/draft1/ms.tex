@@ -1,0 +1,308 @@
+% mnras_template.tex
+%
+% LaTeX template for creating an MNRAS paper
+%
+% v3.0 released 14 May 2015
+% (version numbers match those of mnras.cls)
+%
+% Copyright (C) Royal Astronomical Society 2015
+% Authors:
+% Keith T. Smith (Royal Astronomical Society)
+
+% Change log
+%
+% v3.0 May 2015
+%    Renamed to match the new package name
+%    Version number matches mnras.cls
+%    A few minor tweaks to wording
+% v1.0 September 2013
+%    Beta testing only - never publicly released
+%    First version: a simple (ish) template for creating an MNRAS paper
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic setup. Most papers should leave these options alone.
+\documentclass[a4paper,fleqn,usenatbib]{mnras}
+
+% MNRAS is set in Times font. If you don't have this installed (most LaTeX
+% installations will be fine) or prefer the old Computer Modern fonts, comment
+% out the following line
+\usepackage{newtxtext,newtxmath}
+% Depending on your LaTeX fonts installation, you might get better results with one of these:
+%\usepackage{mathptmx}
+%\usepackage{txfonts}
+
+% Use vector fonts, so it zooms properly in on-screen viewing software
+% Don't change these lines unless you know what you are doing
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+%%%%% AUTHORS - PLACE YOUR OWN PACKAGES HERE %%%%%
+
+\usepackage{hyperref}
+\usepackage[flushleft]{threeparttable}
+
+% Only include extra packages if you really need them. Common packages are:
+\usepackage{graphicx}	% Including figure files
+\usepackage{amsmath}	% Advanced maths commands
+\usepackage{amssymb}	% Extra maths symbols
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% AUTHORS - PLACE YOUR OWN COMMANDS HERE %%%%%
+
+\makeatletter
+\newlength{\abovecaptionskip}%
+\setlength{\abovecaptionskip}{10\p@}
+\makeatother
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+    citecolor=blue,
+}
+
+\newcommand{\fix}{\textcolor{red}}
+
+% Please keep new commands to a minimum, and use \newcommand not \def to avoid
+% overwriting existing commands. Example:
+%\newcommand{\pcm}{\,cm$^{-2}$}	% per cm-squared
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%
+
+% Title of the paper, and the short title which is used in the headers.
+% Keep the title short and informative.
+\title[Hyperbolic Trajectories]{The Equilibrium Temperature of Planetary Bodies in Hyperbolic Trajectories}
+
+% The list of authors, and the short list which is used in the headers.
+% If you need two or more lines of authors, add an extra line using \newauthor
+\author[M\'{e}ndez et al.]{
+Abel M\'{e}ndez,$^{1}$\thanks{E-mail: abel.mendez@upr.edu}
+Second Author,$^{2}$
+Third Author$^{3}$
+and Fourth Author$^{4}$
+\\
+% List of institutions
+$^{1}$Planetary Habitability Laboratory, University 
+of Puerto Rico at Arecibo\\
+$^{2}$Department, Institution, Street Address, City Postal Code, Country\\
+$^{3}$Department, Institution, Street Address, City Postal Code, Country\\
+$^{4}$Department, Institution, Street Address, City Postal Code, Country
+}
+
+% These dates will be filled out by the publisher
+\date{Accepted XXX. Received YYY; in original form ZZZ}
+
+% Enter the current year, for the copyright statements etc.
+\pubyear{2018}
+
+% Don't change these lines
+\begin{document}
+\label{firstpage}
+\pagerange{\pageref{firstpage}--\pageref{lastpage}}
+\maketitle
+
+% Abstract of the paper
+\begin{abstract}
+Some comets, asteroids, and interstellar objects such as 1I/'Oumuamua move in hyperbolic trajectories and experience large variations in temperature while passing a stellar system. While it is possible to estimate their dynamic temperatures , it is not straightforward to calculate their average thermal state since they are not periodic objects. Here we derive analytic solutions for the average equilibrium temperature of planetary bodies in hyperbolic trajectories. This average temperature provides a reference standard to compare the net thermal effect of a star on transient objects. We found that 1I/'Oumuamua experienced a mild change in temperature compared to comets in similar trajectories and this probably contributed to the inactivity of any ices in its surface.
+ 
+\end{abstract}
+
+% Select between one and six entries from the list of approved keywords.
+% Don't make up new ones.
+\begin{keywords}
+physical data and processes -- comets: general -- minor planets, asteroids
+\end{keywords}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%% BODY OF PAPER %%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+
+The planetary body 1I/'Oumuamua is the first known extrasolar visitor of the Solar System \citep{,2017MPEC....U..183M}. It was shown to describe a hyperbolic
+trajectory consistent with an extrasolar origin \citep{2017RNAAS...1....5D, 2017RNAAS...1...21M} and its light curve suggest an elongated shape (up to 10:1 ratio) with an effective spherical radius of $102\pm4$ m and little to no cometary activity \citep{2017NatureMeech}. The source and formation mechanism of 1I/'Oumuamua is still unknown but suggestions include an ejection from a binary system, among many other alternatives \citep[\emph{e.g.},][]{2017RNAAS...1...13G, 2017RNAAS...1...18S, 2018ApJ...852L..13Z, 2018ApJ...852L..15C, 2017arXiv171103558P, 2017arXiv171106618D, 2017arXiv171107535F, 2017arXiv171109397Z, 2017arXiv171108800F, 2018arXiv180102821D}.
+
+The average equilibrium temperature of a planetary body helps to define its general thermal state between the extremes at periastron and apastron. This temperature is easy to define for bodies in elliptical orbits since they are periodic \citep{2017ApJ...837L...1M}. However, bodies in hyperbolic trajectories could experience dramatic thermal variations, from the long interstellar environment to transient but strong stellar fluxes at periastron. This is true for 1I/'Oumuamua and many known comets and asteroids with near hyperbolic trajectories in the Solar System \citep{SSD(2018)}. Other planetary bodies in highly eccentric elliptical orbits could experience similar effects (\emph{e.g.} Comet 1P/Halley).
+
+\fix{It will be good here to expand on how the equilibrium temperature is related to the surface temperature of comets and asteroids. How bond albedo is calculated from geometric albedo, is there a general relation for comets and asteroids? What are the critical temperatures for ices sublimation? How the thermal inertia plays with the sublimation during the short exposition time near periastron? Also add interesting examples with well known asteroids or comets.}
+
+\fix{Discuss relevance of visiting rogue exoplanets, if any. (e.g. expected comet-like tails, atmospheric erosion.)}  
+
+In this study we derive analytic solutions for the temporal average of orbital distance, stellar flux, and equilibrium temperature of planetary bodies in hyperbolic trajectories. These averages were derived as a function of the time within the Solar System influence (\emph{e.g.} the heliopause $\sim122$ AU, \citet{2017ApJ...834..197C}). We also explored other boundary conditions to calculate these averages. Our goal is to derive solutions that could be used to compare the thermal effect of a star on planetary bodies in elliptical and hyperbolic orbits. Section \ref{sec:elliptical} describes averages conditions of elliptical orbits for comparison purposes. Section \ref{sec:hyperbolic} presents our new derivations for hyperbolic trajectories. Section \ref{sec:discussion} discuss the validation of our results with numerical simulations and applications to Solar System and extrasolar planetary bodies, including I1/'Oumuamua.
+
+%% Elliptical Orbits.
+
+\section{Temporal Averages for Elliptical Orbits} \label{sec:elliptical}
+
+Temporal averages for orbital distance $\langle r \rangle$, stellar flux $\langle F \rangle$, and equilibrium temperature $\langle T_{eq} \rangle$ for elliptic orbits were derived by \citet{2017ApJ...837L...1M}. They were solved by integrating in time $t$ over the orbital period $T$ and making the substitutions $r=a(1-e\cos{E})$, $M=E-e\sin{E}$, and $M=(2\pi/T)t$; where $r$ is position, $e$ is the orbital eccentricity, $a$ is the semi-major axis in astronomical units, $E$ is the eccentric anomaly, and $M$ is the mean anomaly. These averages are
+%% temporal averages equations
+\begin{equation} \label{eq:re}
+\langle r \rangle = a\left ( 1+\frac{e^2}{2} \right ),
+\end{equation}
+\begin{equation} \label{eq:Fe}
+\langle F \rangle = \frac{L}{a^2\sqrt{1-e^2}},
+\end{equation}
+\begin{align} \label{eq:Te}
+\langle T_{eq} \rangle & = T_o\left[ \frac{(1-A)L}{\beta \epsilon a^2}\right] ^\frac{1}{4}\frac{2\sqrt{1+e}}{\pi} \; \mathbf{E}\left ( \frac{2e}{1+e} \right ) \\
+& \approx T_o\left[ \frac{(1-A)L}{\beta \epsilon a^2}\right] ^\frac{1}{4} \left[ 1 - \tfrac{1}{16}e^2 - \tfrac{15}{1024}e^4 + O(e^6) \right],
+\end{align}
+where $L$ is the stellar luminosity in solar units, $A$ the bond albedo, $\epsilon$ the emissivity, $\beta$ the redistribution factor, $T_o$ = 278.5 K, and $\mathbf{E}$ is the complete elliptic integral of the second kind \citep{MathWorld, GSL}. The definition of $\mathbf{E}$ used in equation \ref{eq:Te} is the one implemented in software packages like \emph{Mathematica} (\emph{i.e.}, \texttt{EllipticE}) and \emph{Maxima} (\emph{i.e.}, \texttt{elliptic$\_$ce}). The \emph{GNU Scientific Library} (GSL) uses \texttt{gsl\_sf\_ellint\_Ecomp} which requires first the square root of the argument of $E$.
+
+For elliptical orbits the average distance ($a \leq \langle r \rangle < \frac{3}{2}a$) and stellar flux ($F|_{e=0} \leq \langle F \rangle < \infty$) increase with eccentricity. However, the average equilibrium temperature ($T_{eq}|_{e=0} \leq \langle T_{eq} \rangle < \frac{2\sqrt{2}}{\pi} T_{eq}|_{e=0}$) slowly decreases with eccentricity until converging to $\sim90\%$ of the equilibrium temperature for circular orbits. Table \ref{tab:elliptic} shows these properties calculated for some minor planetary bodies with highly eccentric orbits.
+
+\fix{Probably derive new elliptic solutions for a time frame smaller than a period, if possible, for comparison purposes with hyperbolic solutions.}
+
+% Elliptic Orbits Table
+\begin{table*}
+\begin{threeparttable}
+\centering
+\caption{Temporal averages of orbital distance $\langle r \rangle$, stellar flux $\langle F \rangle$, and equilibrium temperature $\langle T_{eq} \rangle$ for some minor planetary bodies with highly eccentric orbits.}
+\begin{tabular}{ l c c c c | c c c }
+ \hline
+ \hline
+ & \multicolumn{3}{c}{Object Description\tnote{a}} & \multicolumn{3}{c}{Temporal Averages\tnote{b}} \\
+ \hline
+ Name & $a$ (AU) & $e$ & $A$ &
+ 	$\langle r \rangle$ (AU) & $\langle F \rangle$ & $\langle T_{eq} \rangle$ (K) \\ 
+ \hline
+ 1P/Halley & 17.834145 & 0.96714291 & \fix{0.04} & 26.174  & 0.0123 & 69.7 \\  
+ 2P/Encke & 2.2151323 & 0.84832024 & \fix{0.046} & 3.0122  & 0.384 & 174 \\
+ 67P/Churyumov-Gerasimenko & 3.4647374 & 0.64058232 & \fix{0.06} & 4.1756  & 0.1084 & 143 \\
+ 90377 Sedna & 487.7651 & 0.8440912 & \fix{0.32}  & 661.53  & $7.84\times10^{-6}$ & 11.7 \\
+ 1566 Icarus & 1.0779459 & 0.8268093 & \fix{0.14}  & 1.4464  & 1.53 & 251 \\
+ 101955	Bennu & 1.126391 & 0.20374511 & \fix{0.046}   & 1.1498 & 0.805 & 259 \\
+ \hline
+ \hline
+\end{tabular}
+\label{tab:elliptic}
+	\begin{tablenotes}
+	\small
+\item[a]{Object elements from the NASA Solar System Dynamic website \href{https://ssd.jpl.nasa.gov/?sb$\_$elem}{https://ssd.jpl.nasa.gov/?sb$\_$elem} and albedos from \fix{REF (bond albedos, not geometric albedos).}}
+\item[b]{Average values calculated with equations \ref{eq:re}, \ref{eq:Fe}, and \ref{eq:Te}, respectively.}
+	\end{tablenotes}
+\end{threeparttable}
+\end{table*}
+
+% Hyperbolic Trajectories
+
+\section{Temporal Averages for Hyperbolic Trajectories} \label{sec:hyperbolic}
+
+We derived analytic solutions for hyperbolic trajectories with respect to time as similarly described in \citet{2017ApJ...837L...1M}. The period of integration $T$ was taken from entering to leaving the stellar system where the time to periastron is the semi-period $\frac{1}{2}T$. The integrals were solved by making the substitutions $r=a(1-e\cosh{H})$, $M=e\sinh{H} - H$, and $M=(2M_o/T)t - M_o$; where $H$ is the hyperbolic eccentricity and the objects move between time zero to $T$, corresponding to $-M_o$ to $+M_o$ in the mean anomaly and $-H_o$ to $+H_o$ in the hyperbolic anomaly. The distance, stellar flux, and equilibrium temperature averages are given with respect to the hyperbolic anomaly as
+\begin{equation} \label{eq:rh}
+\langle r \rangle = -a \left[\frac{e \left(e \cosh{H_o} - 4\right) \sinh{H_o} + \left(e^{2} + 2\right) H_o}{2\left(e \sinh{H_o} - H_o\right)}\right]
+\end{equation}
+\begin{equation} \label{eq:Fh}
+\langle F \rangle = \frac{L}{a^2\sqrt{e^2 - 1}} \left[ \frac{2}{e \sinh{H_o} - H_o}\tan^{-1}\left({\frac{\left(e + 1\right) \tanh{\frac{1}{2}H_o}}{\sqrt{e^2 - 1}}}\right) \right]
+\end{equation}
+\begin{equation} \label{eq:Th}
+\langle T_{eq} \rangle = T_o \left[\frac{L {\left(1 - A\right)}}{\beta \epsilon a^{2}}\right]^{\frac{1}{4}} \left[ \frac{-2 i \sqrt{e-1}}{e \sinh{H_o} - H_o} \, {\rm \mathbf{E}}\left(i\frac{H_o}{2} \mid \frac{2e}{e - 1}\right) \right]
+\end{equation}
+where $\mathbf{E}$ is the incomplete elliptic integral of the second kind \citep{MathWorld, GSL}. As in equation \ref{eq:Te}, the definition of $\mathbf{E}$ used in equation \ref{eq:Th} is the one implemented in \emph{Mathematica} or \emph{Maxima} and not in GSL. Note that equation \ref{eq:Th} also involves operations with imaginary numbers.
+
+\fix{Add series solution to the thermal equation.}
+
+\section{Discussion}
+\label{sec:discussion}
+
+\fix{We validated our analytic solutions for hyperbolic trajectories with numerical solutions. Interpretation of solutions and plots of behavior of averages as a function of $e$. Does eccentricity increases the temperature?}
+
+\fix{We compared the average equilibrium temperature for planetary bodies in elliptical and hyperbolic trajectories using a time frame of one year. Table for hyperbolic examples.}
+
+\fix{Implications to 1I/'Oumuamua and other objects of interest.}
+
+\fix{For those interested in aliens and interstellar travel, it is possible to calculate the stellar energy gain to recharge batteries from interstellar flybys using equation \ref{eq:Fh}.} 
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+\fix{We derived analytic solutions for the average distance, stellar flux, and equilibrium temperature of planetary bodies in hyperbolic trajectories. We validated our derivations with numerical solutions.}
+
+\fix{We find that the easiest way to compare the thermal state between planetary bodies in elliptic and hyperbolic trajectories is under equal time frames that are close to periastron.}
+
+\fix{Our analysis on 1I/'Oumuamua shows that its average temperature of XXX K was not high enough to sublimate any ices in its surface. This low temperature and an organic crust as suggested by \citet{2017arXiv171206552F} are probably responsible to its lack of cometary activity.}
+
+\section*{Acknowledgements}
+
+This work was supported by the Planetary Habitability Laboratory (PHL) of the University of Puerto Rico at Arecibo (UPR Arecibo).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%%%%%%
+
+% The best way to enter references is to use BibTeX:
+
+%\bibliographystyle{mnras}
+%\bibliography{example} % if your bibtex file is called example.bib
+
+% Alternatively you could enter them by hand, like this:
+% This method is tedious and prone to error if you have lots of references
+\begin{thebibliography}{99}
+
+\bibitem[Cairns \& Fuselier(2017)]{2017ApJ...834..197C} Cairns, I.~H., \& Fuselier, S.~A.\ 2017, \apj, 834, 197
+
+\bibitem[{\'C}uk(2018)]{2018ApJ...852L..15C} {\'C}uk, M.\ 2018, \apjl, 852, L15
+
+\bibitem[de la Fuente Marcos \& de la Fuente Marcos(2017)]{2017RNAAS...1....5D} de la Fuente Marcos, C., \& de la Fuente Marcos, R.\ 2017, Research Notes of the American Astronomical Society, 1, 5
+
+\bibitem[Do et al.(2018)]{2018arXiv180102821D} Do, A., Tucker, M.~A., \& Tonry, J.\ 2018, arXiv:1801.02821
+
+\bibitem[Dybczy{\'n}ski \& Kr{\'o}likowska(2017)]{2017arXiv171106618D} Dybczy{\'n}ski, P.~A., \& Kr{\'o}likowska, M.\ 2017, arXiv:1711.06618
+
+\bibitem[Feng \& Jones(2017)]{2017arXiv171108800F} Feng, F., \& Jones, H.~R.~A.\ 2017, arXiv:1711.08800
+
+\bibitem[Ferrin \& Zuluaga(2017)]{2017arXiv171107535F} Ferrin, I., \& Zuluaga, J.\ 2017, arXiv:1711.07535
+
+\bibitem[Fitzsimmons et al.(2017)]{2017arXiv171206552F} Fitzsimmons, A., Snodgrass, C., Rozitis, B., et al.\ 2017, arXiv:1712.06552
+
+\bibitem[Gaidos et al.(2017)]{2017RNAAS...1...13G} Gaidos, E., Williams, J., \& Kraus, A.\ 2017, Research Notes of the American Astronomical Society, 1, 13
+
+\bibitem[GSL (2016)]{GSL} GNU Scientific Library 2016, Legendre Form of Complete Elliptic Integrals. From the GNU Scientific Library. http://www.gnu.org/software/gsl
+
+\bibitem[Mamajek(2017)]{2017RNAAS...1...21M} Mamajek, E.\ 2017, Research Notes of the American Astronomical Society, 1, 21 
+
+\bibitem[Meech et al.(2017a)]{2017MPEC....U..183M} Meech, K., Bacci, P., Maestripieri, M., et al.\ 2017, Minor Planet Electronic Circulars, 2017-U183
+
+\bibitem[Meech et al.(2017b)] {2017NatureMeech} Meech K. J., et al., 2017, \nat, 552, 378
+
+\bibitem[M{\'e}ndez \& Rivera-Valent{\'{\i}}n(2017)]{2017ApJ...837L...1M} M{\'e}ndez, A., \& Rivera-Valent{\'{\i}}n, E.~G.\ 2017, \apjl, 837, L1 
+
+\bibitem[NASA/JPL SSD(2018)]{SSD(2018)} NASA/JPL Solar System Dynamics. https://ssd.jpl.nasa.gov/
+
+\bibitem[Portegies Zwart et al.(2017)]{2017arXiv171103558P} Portegies Zwart, S., Pelupessy, I., Bedorf, J., Cai, M., \& Torres, S.\ 2017, arXiv:1711.03558
+
+\bibitem[Schneider(2017)]{2017RNAAS...1...18S} Schneider, J.\ 2017, Research Notes of the American Astronomical Society, 1, 18
+
+\bibitem[Weisstein (2016)]{MathWorld} Weisstein, Eric W. 2016, Complete Elliptic Integral of the Second Kind. From MathWorld--A Wolfram Web Resource. http://mathworld.wolfram.com
+
+\bibitem[Zhang(2018)]{2018ApJ...852L..13Z} Zhang, Q.\ 2018, \apjl, 852, L13
+
+\bibitem[Zuluaga et al.(2017)]{2017arXiv171109397Z} Zuluaga, J.~I., Sanchez-Hernandez, O., Sucerquia, M., \& Ferrin, I.\ 2017, arXiv:1711.09397
+
+\end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%% APPENDICES %%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+
+\section{Orbital Elements of Elliptical Orbits}
+
+\fix{This appendix includes a summary of the equations used with a figure for visualization purposes.}
+
+\section{Orbital Elements of Hyperbolic Trajectories}
+
+\fix{This appendix includes a summary of the equations used with a figure for visualization purposes.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't change these lines
+\bsp	% typesetting comment
+\label{lastpage}
+\end{document}
+
+% End of mnras_template.tex
